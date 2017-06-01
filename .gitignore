@@ -1,0 +1,11 @@
+.idea
+build
+coverage
+bower_components
+gen/
+old
+node_modules
+*.iml
+*.iws
+.DS_Store
+npm-debug.log

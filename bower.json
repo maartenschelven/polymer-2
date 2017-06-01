@@ -1,0 +1,14 @@
+{
+  "name": "ing-agile-game",
+  "description": "The best way to develop!",
+  "main": "index.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-progress": "2.0.0",
+    "app-layout": "^2.0.0",
+    "paper-button": "^2.0.0",
+    "paper-fab": "^2.0.0",
+    "iron-icons": "^2.0.0",
+    "paper-icon-button": "^2.0.0"
+  }
+}

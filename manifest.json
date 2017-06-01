@@ -1,0 +1,7 @@
+{
+  "name": "ing-agile-game",
+  "short_name": "ing-agile-game",
+  "description": "The best way to develop!",
+  "start_url": "/",
+  "display": "standalone"
+}

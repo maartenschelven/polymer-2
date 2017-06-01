@@ -1,0 +1,85 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+
+<link rel="import" href="mainWindow/mainWindow.html">
+<dom-module id="ing-agile-game-app">
+  <template>
+    <style include="app-grid-style">
+      :host {
+        display: block;
+      }
+
+      app-header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #4285f4;
+        color: #fff;
+        display: block;
+        float: left;
+      }
+
+      main-window {
+        display: block;
+        float: left;
+      }
+    </style>
+
+
+
+    <app-drawer-layout fullbleed>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header slot="header" condenses reveals effects="resize-snapped-title">
+          <app-toolbar>
+            <h4 condensed-title>The Agile Game</h4>
+
+          </app-toolbar>
+          <app-toolbar>
+            <h1 main-title>[[title]]</h1>
+            <!-- Set the total profit and time passed here -->
+            <div>
+            <p>tijd verstreken: </p>
+            <p>$$$</p>
+            </div>
+          </app-toolbar>
+
+        </app-header>
+
+        <main-window></main-window>
+
+      </app-header-layout>
+
+
+    </app-drawer-layout>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class IngAgileGameApp extends Polymer.Element {
+      static get is() { return 'ing-agile-game-app'; }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: 'The Agile Game'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(IngAgileGameApp.is, IngAgileGameApp);
+  </script>
+</dom-module>

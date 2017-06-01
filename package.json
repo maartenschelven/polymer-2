@@ -1,0 +1,22 @@
+{
+  "name": "ing-agile-game",
+  "version": "0.0.1",
+  "description": "The best way to develop!",
+  "main": "ing-agile-gameapp.html",
+  "scripts": {
+    "serve": "polymer serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "bower-art-resolver": "^2.0.6",
+    "bower-ing-resolver": "^1.0.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-html": "^1.6.0",
+    "eslint-plugin-import": "^2.2.0",
+    "husky": "^0.11.9",
+    "polylint": "^2.10.1",
+    "polyserve": "^0.12.0"
+  }
+}
+

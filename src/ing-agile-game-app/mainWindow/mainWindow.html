@@ -1,0 +1,44 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../companyRoles/developer.html">
+
+
+<dom-module id="main-window">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+            }
+        </style>
+
+        <app-header-layout has-scrolling-region>
+            <ing-developer></ing-developer>
+            
+        </app-header-layout>
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class mainWindow extends Polymer.Element {
+            static get is() { return 'main-window'; }
+            static get properties() {
+                return {
+                    name: {
+                        type: String,
+                        value: 'mainWindow'
+                    }
+                };
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+            }
+        }
+
+        window.customElements.define(mainWindow.is, mainWindow);
+    </script>
+</dom-module>
