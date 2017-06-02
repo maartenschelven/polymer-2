@@ -1,6 +1,8 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../companyRoles/developer.html">
+<link rel="import" href="../companyRoles/ing-ux.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 
 
 <dom-module id="main-window">
@@ -12,9 +14,12 @@
         </style>
 
         <app-header-layout has-scrolling-region>
+            <ing-ux></ing-ux>
             <ing-developer></ing-developer>
-            
+
         </app-header-layout>
+
+        <paper-button on-tap="showProfit">fefw</paper-button>
 
     </template>
 
@@ -30,15 +35,43 @@
                     name: {
                         type: String,
                         value: 'mainWindow'
+                    },
+                    totalDeveloperProfit: {
+                        type: Number,
+                        observer: '_totalProfit'
                     }
                 };
             }
 
+
+
+            ready() {
+                super.ready();
+                window.addEventListener('total', e => this._calculateTotalAmount(e));
+            }
+
             connectedCallback() {
                 super.connectedCallback();
+
+            }
+
+
+
+
+            showProfit() {
+                console.log(this.totalDeveloperProfit);
+            }
+
+            _totalProfit() {
+                console.log(this.totalDeveloperProfit);
+            }
+
+            _calculateTotalAmount(e) {
+                console.log(e);
             }
         }
 
         window.customElements.define(mainWindow.is, mainWindow);
     </script>
+
 </dom-module>

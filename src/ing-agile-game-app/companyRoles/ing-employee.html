@@ -1,0 +1,57 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/paper-progress/paper-progress.html">
+
+
+<link rel="import" href="../../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../../bower_components/paper-styles/default-theme.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-fab/paper-fab.html">
+
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="ing-employee">
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class IngEmployee extends Polymer.Element {
+            static get is() { return 'ing-employee'; }
+            static get properties() {
+                return {
+
+                    totalProfit: {
+                        type: Number,
+                        value: 0
+                    },
+                    tick: {
+                        type: Number,
+                        value: 1
+                    },
+
+                    total: {
+                        type:Number,
+                        value: 0,
+                        observer: '_totalAmount'
+                    }
+                };
+            }
+
+            _increaseAmountOfEmployees() {
+                this.hiringCosts = this.numberOfDevelopers * this.numberOfDevelopers * 2;
+                if (this.totalProfit > this.hiringCosts) {
+                    this.numberOfDevelopers++;
+                    this.totalProfit -= this.hiringCosts;
+                }
+            }
+
+
+            _totalAmount(e) {
+                console.log(e);
+            }
+
+        }
+
+        window.customElements.define(IngEmployee.is, IngEmployee);
+    </script>
+</dom-module>
