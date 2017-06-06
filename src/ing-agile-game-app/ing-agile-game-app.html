@@ -31,38 +31,24 @@
       }
     </style>
 
-
-
     <app-drawer-layout fullbleed>
-
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-
         <app-header slot="header" condenses reveals effects="resize-snapped-title">
           <app-toolbar>
             <h4 condensed-title>The Agile Game</h4>
-
           </app-toolbar>
           <app-toolbar>
             <h1 main-title>[[title]]</h1>
             <!-- Set the total profit and time passed here -->
-            <div>
-            <p>tijd verstreken: </p>
-            <p>$$$</p>
-            </div>
           </app-toolbar>
-
         </app-header>
 
         <main-window></main-window>
 
       </app-header-layout>
-
-
     </app-drawer-layout>
-
   </template>
-
   <script>
     /**
      * @customElement
