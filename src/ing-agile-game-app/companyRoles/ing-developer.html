@@ -63,8 +63,14 @@
             <div class="content">
                 <div class="data">
                     <div class="title">[[name]]</div>
-                    <p>Profit [[totalProfit]]</p>
+                    <p>Developers hired [[numberOfDevelopers]]</p>
+                    <p>Profit per tick [[totalProfit]]</p>
                 </div>
+
+            </div>
+            <div class="buttons">
+                <paper-fab raised on-tap="_increaseAmountOfDevelopers" icon="add"></paper-fab>
+                <span>Hire another! <br/> $ ([[hiringCosts]])</span>
             </div>
         </div>
 
@@ -94,6 +100,14 @@
                     tick: {
                         type: Number,
                         value: 1
+                    },
+                    numberOfDevelopers: {
+                        type: Number,
+                        value: 1
+                    },
+                    hiringCosts: {
+                        type: Number,
+                        value: 4
                     }
                 };
             }
@@ -105,11 +119,20 @@
                     this.tick++;
                 this.set('tick', this.tick);
                 if (this.tick === 100) {
-                    this.totalProfit += this.profitPerTick;
+                    this.totalProfit += this.profitPerTick * this.numberOfDevelopers;
                     this.tick = 0;
 
                 }
-            }, 10)}
+            }, 10)
+            }
+
+            _increaseAmountOfDevelopers() {
+                this.hiringCosts = this.numberOfDevelopers * this.numberOfDevelopers * 2;
+                if (this.totalProfit > this.hiringCosts) {
+                    this.numberOfDevelopers++;
+                    this.totalProfit -= this.hiringCosts;
+                }
+            }
         }
 
         window.customElements.define(IngDeveloper.is, IngDeveloper);
