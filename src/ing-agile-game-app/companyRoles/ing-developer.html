@@ -49,14 +49,23 @@
                 width: 15%;
             }
 
-            .buttons paper-fab {
+            .buttons paper-fab{
                 float: right;
                 --paper-fab-background: #ff6200;
             }
         </style>
 
         <div class="card">
-            <h1>[[name]]</h1>
+            <div class="role">
+                <img src="/src/img/developer.svg" />
+                <paper-progress value="[[tick]]"></paper-progress>
+            </div>
+            <div class="content">
+                <div class="data">
+                    <div class="title">[[name]]</div>
+                    <p>Profit [[totalProfit]]</p>
+                </div>
+            </div>
         </div>
 
     </template>
@@ -67,18 +76,40 @@
          * @polymer
          */
         class IngDeveloper extends Polymer.Element {
-            static get is() {
-                return 'ing-developer';
-            }
-
+            static get is() { return 'ing-developer'; }
             static get properties() {
                 return {
                     name: {
                         type: String,
                         value: 'developer'
+                    },
+                    profitPerTick: {
+                        type: Number,
+                        value: 5
+                    },
+                    totalProfit: {
+                        type: Number,
+                        value: 0
+                    },
+                    tick: {
+                        type: Number,
+                        value: 1
                     }
                 };
             }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                setInterval(_ => {
+                    this.tick++;
+                this.set('tick', this.tick);
+                if (this.tick === 100) {
+                    this.totalProfit += this.profitPerTick;
+                    this.tick = 0;
+
+                }
+            }, 10)}
         }
 
         window.customElements.define(IngDeveloper.is, IngDeveloper);
