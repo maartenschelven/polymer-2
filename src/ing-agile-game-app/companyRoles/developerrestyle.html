@@ -1,0 +1,201 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/paper-progress/paper-progress.html">
+
+
+<link rel="import" href="../../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../../bower_components/paper-styles/default-theme.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-fab/paper-fab.html">
+
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="ing-developer2">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            .role {
+                float: left;
+                max-width: 200px;
+                overflow: hidden;
+                width: 25%;
+            }
+
+            .role img {
+                max-width: 200px;
+            }
+
+            .content {
+                float: left;
+                width: 60%;
+            }
+
+            .content .data,
+            .content .upgrades {
+                float: left;
+                width: 50%;
+
+            }
+
+            .content .data .title {
+                font-size: 24px;
+                font-weight: bold;
+                font-style: oblique;
+            }
+
+            .buttons {
+                float: left;
+                width: 15%;
+            }
+
+            .buttons paper-fab{
+                float: right;
+                --paper-fab-background: #ff6200;
+            }
+        </style>
+
+
+        <!--
+
+            IT
+               - make code
+
+            UX
+               - design great stuff
+
+            CJE
+               - think about stuff
+
+
+
+            ing-employee
+               weergave stuk
+                - dispatch event per interval
+                -
+
+
+                upgrades
+
+                interval verlagen
+                tick    verhogen
+
+
+            catches dispatch and does stuff with it
+            <it-employee extends ing-employee>
+
+                <it-upgrades-viewer></<it-upgrades-viewer>
+
+            Weergave component met dispatch x interval
+                <employee-viewer interval=150 name=itGuy img=srcimg upgrades={{kickassObjectmetUpgrades}}>
+                    <img></img>
+                </employee-viewer>
+
+                <employee-viewer interval=150 name=itGuy img=srcimg>
+                <employee-viewer interval=150 name=itGuy img=srcimg>
+
+            catches dispatch and does stuff with it
+            <ux-employee extends ing-employee>
+
+            Weergave component met dispatch x interval
+                <employee-viewer interval=150 name=uxGuy img=srcimg>
+                <employee-viewer interval=150 name=uxGuy img=srcimg>
+                <employee-viewer interval=150 name=uxGuy img=srcimg>
+
+
+
+        -->
+
+        <ing-employee img="" name="developer" interval="150">
+
+        </ing-employee>
+
+        <div class="card">
+            <div class="role">
+                <img src="/src/img/developer.svg" />
+                <paper-progress value="[[tick]]"></paper-progress>
+            </div>
+            <div class="content">
+                <div class="data">
+                    <div class="title">[[name]]</div>
+                    <p>Developers hired [[numberOfDevelopers]]</p>
+                    <p>Profit per tick [[totalProfit]]</p>
+                </div>
+
+                <div class="upgrades">
+                    <p>cool stuff here</p>
+                </div>
+
+            </div>
+            <div class="buttons">
+                <paper-fab raised on-tap="_increaseAmountOfDevelopers" icon="add"></paper-fab>
+                <span>Hire another! <br/> $ ([[hiringCosts]])</span>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class ingDeveloper2 extends Polymer.Element {
+            static get is() { return 'ing-developer2'; }
+            static get properties() {
+                return {
+                    name: {
+                        type: String,
+                        value: 'developer'
+                    },
+                    profitPerTick: {
+                        type: Number,
+                        value: 5
+                    },
+                    totalProfit: {
+                        type: Number,
+                        value: 0
+                    },
+                    tick: {
+                        type: Number,
+                        value: 1
+                    },
+                    numberOfDevelopers: {
+                        type: Number,
+                        value: 1
+                    },
+                    hiringCosts: {
+                        type: Number,
+                        value: 4
+                    }
+                };
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                setInterval(_ => {
+                    this.tick++;
+                    this.set('tick', this.tick);
+                    if (this.tick === 100) {
+                        this.totalProfit += this.profitPerTick * this.numberOfDevelopers;
+                        this.tick = 0;
+
+                    }
+                }, 150)
+            }
+
+            _increaseAmountOfDevelopers() {
+                this.hiringCosts = this.numberOfDevelopers * this.numberOfDevelopers * 2;
+                if (this.totalProfit > this.hiringCosts) {
+                    this.numberOfDevelopers++;
+                    this.totalProfit -= this.hiringCosts;
+                }
+            }
+        }
+
+        window.customElements.define(ingDeveloper2.is, ingDeveloper2);
+    </script>
+</dom-module>
